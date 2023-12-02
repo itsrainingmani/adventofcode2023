@@ -2,8 +2,8 @@
   "name": "advent-of-code-2023",
   "type": "module",
   "author": {
-    "name": "Matija Osrečki",
-    "url": "https://github.com/matijaoe/advent-of-code-2023"
+    "name": "Mani Sundararajan",
+    "url": "https://github.com/itsrainingmain/aoc2023-ts"
   },
   "module": "index.ts",
   "scripts": {
