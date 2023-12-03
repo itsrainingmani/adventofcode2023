@@ -32,3 +32,7 @@ export const desc = <T extends number | string>(a: T, b: T): number => {
 export const isBetween = (x: number, [min, max]: [number, number]) => {
   return x >= min && x <= max
 }
+
+export const canBeNum = (x: string): boolean => {
+  return !Number.isNaN(Number(x))
+}
