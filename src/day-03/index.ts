@@ -36,6 +36,9 @@ const isPartNumber = (e: Engine, pos: Pos): boolean => {
 
 export const part1 = () => {
   const lines = parseLines(input)
+  for (let i = 0; i < lines.length; i++) {
+    lines[i] += '.'
+  }
   const engine: Engine = {
     schematic: lines.map((l) => l.split('')),
     height: lines.length,
@@ -43,7 +46,6 @@ export const part1 = () => {
     valid_parts: []
   }
   for (const [i, row] of engine.schematic.entries()) {
-    // console.write(`${i} - `)
     let part_num = ''
     let valid_part = false
     for (const [j, x] of row.entries()) {
@@ -54,17 +56,12 @@ export const part1 = () => {
         }
       } else {
         if (valid_part) {
-          // console.write(` ${part_num} `)
           engine.valid_parts.push(Number(part_num))
         }
         part_num = ''
         valid_part = false
       }
     }
-    if (valid_part) {
-      engine.valid_parts.push(Number(part_num))
-    }
-    // console.log('\n-------')
   }
 
   return sum(engine.valid_parts)
@@ -74,6 +71,9 @@ type Gears = { [index: string]: number[] }
 
 export const part2 = () => {
   const lines = parseLines(input)
+  for (let i = 0; i < lines.length; i++) {
+    lines[i] += '.'
+  }
 
   const engine: Engine = {
     schematic: lines.map((l) => l.split('')),
@@ -83,7 +83,6 @@ export const part2 = () => {
   }
   const gear_locations: Gears = {}
   for (const [i, row] of engine.schematic.entries()) {
-    // console.write(`${i} - `)
     let part_num = ''
     let valid_part = false
     const part_gears: Set<string> = new Set()
@@ -111,7 +110,6 @@ export const part2 = () => {
               gear_locations[gear_loc] = [Number(part_num)]
             }
           }
-          // console.write(` ${part_num} `)
           engine.valid_parts.push(Number(part_num))
         }
         part_num = ''
@@ -119,19 +117,7 @@ export const part2 = () => {
         part_gears.clear()
       }
     }
-    if (valid_part) {
-      for (const gear_loc of [...part_gears]) {
-        if (gear_loc in gear_locations) {
-          gear_locations[gear_loc].push(Number(part_num))
-        } else {
-          gear_locations[gear_loc] = [Number(part_num)]
-        }
-      }
-      engine.valid_parts.push(Number(part_num))
-    }
-    // console.log('\n-------')
   }
-  console.log(gear_locations)
   let gear_ratio_sum = 0
   for (const [_loc, gears] of Object.entries(gear_locations)) {
     if (gears.length === 2) {
